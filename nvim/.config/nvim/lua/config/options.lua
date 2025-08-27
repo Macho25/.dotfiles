@@ -5,3 +5,10 @@
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    underline = true,
+    float = { border = "rounded" },
+})
