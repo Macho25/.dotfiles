@@ -2,13 +2,11 @@
 
 set -e
 
-if command -v apt-get &>/dev/null; then
-    sudo apt-get update
-    xargs sudo apt-get install -y <pkglist.txt
-elif command -v pacman &>/dev/null; then
-    sudo pacman -Syu --noconfirm
-    sudo pacman -S --needed - <pkglist.txt
-fi
+xargs -a pkglist.txt sudo apt install -y
 
-cd ~/dotfiles
-stow */
+sudo wget -O /usr/local/bin/nvim "https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.appimage"
+sudo chmod +x /usr/local/bin/nvim
+
+cd ~/dotfiles stow */
+
+source ~/.bashrc

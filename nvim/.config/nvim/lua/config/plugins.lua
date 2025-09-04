@@ -56,4 +56,31 @@ return {
             vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
         end,
     },
+    transparent_background = true,
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- for file icons
+        },
+        config = function()
+            require("neo-tree").setup({
+                filesystem = {
+                    filtered_items = {
+                        hide_dotfiles = false, -- show dotfiles
+                        hide_gitignored = false, -- show files in .gitignore
+                    },
+                },
+                window = {
+                    mappings = {
+                        ["<CR>"] = "open", -- Enter opens file
+                        ["o"] = "open_tab", -- o opens in new tab
+                        ["s"] = "open_split", -- s opens in horizontal split
+                        ["v"] = "open_vsplit", -- v opens in vertical split
+                    },
+                },
+            })
+        end,
+    },
 }

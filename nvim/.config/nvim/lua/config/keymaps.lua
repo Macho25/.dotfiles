@@ -18,6 +18,8 @@ M.general = {
         vim.keymap.set("n", "<C-j>", ":silent !tmux select-pane -D<CR>", { noremap = true, silent = true }),
         vim.keymap.set("n", "<C-k>", ":silent !tmux select-pane -U<CR>", { noremap = true, silent = true }),
     },
+    vim.api.nvim_set_keymap("n", "<leader>e", ":Neotree toggle<CR>", { noremap = true, silent = true }),
+    vim.keymap.set("v", "<leader>R", [[:<C-u>%s/\%V<C-r>=escape(@",'/')<CR>/\=input("Replace with: ")/g<CR>]]),
 }
 
 return M
