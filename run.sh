@@ -9,7 +9,8 @@ sudo apt install -y unzip fontconfig dconf-cli tilix
 xargs -a pkglist.txt sudo apt install -y
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
+mkdir -p ~/.config/tmux
+touch ~/.config/tmux/tmux.conf
 sudo wget -O /usr/local/bin/nvim "https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.appimage"
 sudo chmod +x /usr/local/bin/nvim
 
@@ -46,7 +47,7 @@ else
     echo "Skipping background image setup"
 fi
 
-stow tmux nvim bash
+stow -v tmux nvim bash
 
-tmux source ~/.tmux.conf
+tmux source $XDG_CONFIG_HOME/tmux/tmux.conf
 source ~/.bashrc
