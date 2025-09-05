@@ -2,15 +2,29 @@
 
 set -e
 
+sudo apt update
+
+sudo apt install -y unzip fontconfig dconf-cli tilix
+
 xargs -a pkglist.txt sudo apt install -y
 
-# Neovim installation
-sudo wget -O /usr/local/bin/nvim "https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.appimage"
+sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+sudo chmod +x /usr/local/bin/oh-my-posh
+
+mkdir -p ~/.poshthemes
+wget -O ~/.poshthemes/blue-owl.omp.json "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip"
+unzip -j ~/.poshthemes/themes.zip "themes/blue-owl.omp.json" -d ~/.poshthemes/
+rm ~/.poshthemes/themes.zip
+
+NVIM_VERSION="v0.11.0" sudo wget -O /usr/local/bin/nvim "https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux-x86_64.appimage"
 sudo chmod +x /usr/local/bin/nvim
 
-# LazyVim installation
-git clone https://github.com/LazyVim/starter ~/.config/nvim
-rm -rf ~/.config/nvim/.git
+if [ ! -d ~/.config/nvim ]; then
+    git clone https://github.com/LazyVim/starter ~/.config/nvim
+    rm -rf ~/.config/nvim/.git
+else
+    echo "~/.config/nvim already exists, skipping LazyVim clone"
+fi
 
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts
@@ -20,33 +34,29 @@ rm 0xProto.zip
 fc-cache -fv
 
 echo 'eval "$(oh-my-posh init bash --config ~/.poshthemes/blue-owl.omp.json)"' >>~/.bashrc
-
 echo 'export TMUX_PLUGIN_MANAGER_PATH="$HOME/.tmux/plugins/"' >>~/.bashrc
 
 mkdir -p "$HOME/Pictures"
-
 wget -O "$HOME/Pictures/starry-landscape.jpg" "https://images.wallpapersden.com/image/download/starry-landscape-4k-cool-blue-moon_bW5tbG6UmZqaraWkpJRobWllrWdma2U.jpg"
 
-BACKGROUND_IMAGE="$HOME/Pictures/starry-landscape.jpg"
-USE_IMAGE_BACKGROUND=true
-
-PROFILE_ID=$(dconf read /com/gexperts/Tilix/profiles/ | tr -d "[]' " | cut -d, -f1)
-PROFILE_PATH="/com/gexperts/Tilix/profiles/$PROFILE_ID"
-
-if [ "$USE_IMAGE_BACKGROUND" = true ]; then
+if command -v tilix &>/dev/null; then
+    BACKGROUND_IMAGE="$HOME/Pictures/starry-landscape.jpg"
     if [ -f "$BACKGROUND_IMAGE" ]; then
-        echo "🖼️ Setting background image: $BACKGROUND_IMAGE"
-        dconf write ${PROFILE_PATH}/background-image "'$BACKGROUND_IMAGE'"
-        dconf write ${PROFILE_PATH}/background-transparency-percent 0
-        dconf write ${PROFILE_PATH}/background-transparency false
-    else
-        echo "⚠️ Background image not found at $BACKGROUND_IMAGE"
+        PROFILE_ID=$(dconf list /com/gexperts/Tilix/profiles/ | head -n1 | tr -d "/")
+        if [ -n "$PROFILE_ID" ]; then
+            PROFILE_PATH="/com/gexperts/Tilix/profiles/$PROFILE_ID"
+            dconf write ${PROFILE_PATH}/background-image "'$BACKGROUND_IMAGE'"
+            dconf write ${PROFILE_PATH}/background-transparency-percent 0
+            dconf write ${PROFILE_PATH}/background-transparency false
+        fi
     fi
-else
-    echo "Skipping background image setup"
 fi
 
-stow */
+stow -t ~ tmux nvim bash
 
-tmux source ~/.tmux.conf
+if [ -f ~/.tmux.conf ]; then
+    tmux source ~/.tmux.conf || true
+fi
 source ~/.bashrc
+
+echo "Setup completed!"
