@@ -47,6 +47,7 @@ else
     echo "Skipping background image setup"
 fi
 
+rm -rf ~/.config/tmux ~/.config/nvim
 stow -v tmux nvim bash
 
 tmux source $XDG_CONFIG_HOME/tmux/tmux.conf
