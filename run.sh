@@ -8,6 +8,8 @@ sudo apt install -y unzip fontconfig dconf-cli tilix
 
 xargs -a pkglist.txt sudo apt install -y
 
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 sudo wget -O /usr/local/bin/nvim "https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.appimage"
 sudo chmod +x /usr/local/bin/nvim
 
@@ -20,10 +22,6 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/0xProto.zi
 unzip 0xProto.zip -d 0xProto
 rm 0xProto.zip
 fc-cache -fv
-
-echo 'eval "$(oh-my-posh init bash --config ~/.poshthemes/blue-owl.omp.json)"' >>~/.bashrc
-
-echo 'export TMUX_PLUGIN_MANAGER_PATH="$HOME/.tmux/plugins/"' >>~/.bashrc
 
 mkdir -p "$HOME/Pictures"
 
