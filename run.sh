@@ -4,12 +4,10 @@ set -e
 
 sudo apt update
 
-sudo apt install -y unzip fontconfig dconf-cli tilix
-
 xargs -a pkglist.txt sudo apt install -y
 
 # Tmux plugin manager
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || true
 # mkdir -p ~/.config/tmux
 # touch ~/.config/tmux/tmux.conf
 
@@ -21,15 +19,16 @@ sudo wget -O /usr/local/bin/nvim "https://github.com/neovim/neovim/releases/down
 sudo chmod +x /usr/local/bin/nvim
 
 # Fonts
-wget -O ~/.local/share/fonts "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/0xProto.zip"
-unzip 0xProto.zip -d 0xProto
+mkdir -p ~/.local/share/fonts
+wget -O 0xProto.zip "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/0xProto.zip"
+unzip -o 0xProto.zip -d ~/.local/share/fonts/0xProto
 rm 0xProto.zip
 fc-cache -fv
 
 # Oh my posh theme
 curl -s https://ohmyposh.dev/install.sh | bash -s
-mkdir .poshthemes
-mv ~/.cache/oh-my-posh/themes/blue-owl.omp.json ~/.poshthemes
+mkdir -p ~/.poshthemes
+mv ~/.cache/oh-my-posh/themes/blue-owl.omp.json ~/.poshthemes/
 
 # mkdir -p "$HOME/Picture"
 # USE_IMAGE_BACKGROUND=true
@@ -56,8 +55,7 @@ mv ~/.cache/oh-my-posh/themes/blue-owl.omp.json ~/.poshthemes
 # fi
 
 # rm -rf ~/.config/tmux ~/.config/nvim
-rm -rf ~/.bashrc
+mv ~/.bashrc ~/.bashrc.backup
 stow -v tmux nvim bash
-
-tmux source $XDG_CONFIG_HOME/tmux/tmux.conf
+tmux -f ~/.config/tmux/tmux.conf new-session -d || true
 source ~/.bashrc
