@@ -8,6 +8,7 @@ sudo apt install -y unzip fontconfig dconf-cli tilix
 
 xargs -a pkglist.txt sudo apt install -y
 
+# Tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # mkdir -p ~/.config/tmux
 # touch ~/.config/tmux/tmux.conf
@@ -15,13 +16,20 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # git clone https://github.com/LazyVim/starter ~/.config/nvim
 # rm -rf ~/.config/nvim/.git
 
+# Neovim
 sudo wget -O /usr/local/bin/nvim "https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.appimage"
 chmod +x /usr/local/bin/nvim
 
+# Fonts
 sudo wget -O ~/.local/share/fonts "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/0xProto.zip"
 unzip 0xProto.zip -d 0xProto
 rm 0xProto.zip
 fc-cache -fv
+
+# Oh my posh theme
+curl -s https://ohmyposh.dev/install.sh | bash -s
+mkdir .poshthemes
+mv ~/.cache/oh-my-posh/themes/blue-owl.omp.json ~/.poshthemes
 
 # mkdir -p "$HOME/Picture"
 # USE_IMAGE_BACKGROUND=true

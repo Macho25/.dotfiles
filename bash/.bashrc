@@ -139,6 +139,6 @@ if ! shopt -oq posix; then
 fi
 
 # Created by `pipx` on 2025-05-18 10:49:22
-export PATH="$PATH:/home/macho25/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 eval "$(oh-my-posh init bash --config ~/.poshthemes/blue-owl.omp.json)"
 export TMUX_PLUGIN_MANAGER_PATH="$HOME/.tmux/plugins/"
