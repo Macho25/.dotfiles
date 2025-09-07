@@ -21,7 +21,7 @@ sudo wget -O /usr/local/bin/nvim "https://github.com/neovim/neovim/releases/down
 sudo chmod +x /usr/local/bin/nvim
 
 # Fonts
-sudo wget -O ~/.local/share/fonts "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/0xProto.zip"
+wget -O ~/.local/share/fonts "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/0xProto.zip"
 unzip 0xProto.zip -d 0xProto
 rm 0xProto.zip
 fc-cache -fv
