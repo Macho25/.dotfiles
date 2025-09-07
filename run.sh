@@ -18,7 +18,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Neovim
 sudo wget -O /usr/local/bin/nvim "https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.appimage"
-chmod +x /usr/local/bin/nvim
+sudo chmod +x /usr/local/bin/nvim
 
 # Fonts
 sudo wget -O ~/.local/share/fonts "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/0xProto.zip"
