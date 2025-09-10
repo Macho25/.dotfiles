@@ -100,6 +100,7 @@ alias gt='git status'
 alias gc='git commit -m'
 alias ga='git add .'
 alias gp='git push'
+alias gl='git log --oneline'
 mkcd() {
     mkdir "$1" && cd "$1"
 
