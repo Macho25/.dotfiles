@@ -101,6 +101,18 @@ alias gc='git commit -m'
 alias ga='git add .'
 alias gp='git push'
 alias gl='git log --oneline'
+alias cl='clear'
+alias python='source ./venv/bin/activate'
+alias bashrc='source ~/.bashrc'
+alias WDOWN='cd /mnt/c/Users/Admin/Downloads/'
+moveW() {
+    mv "$1" /mnt/c/Users/Admin
+}
+x() {
+    chmod +x "$1"
+
+}
+
 mkcd() {
     mkdir "$1" && cd "$1"
 
@@ -108,7 +120,7 @@ mkcd() {
 
 c() {
 
-    if [ -f "$1.c" ]; then
+    if [ ! -f "./$1.c" ]; then
         echo "non-existing file"
         return 1
     fi
