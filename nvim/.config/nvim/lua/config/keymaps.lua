@@ -21,5 +21,9 @@ M.general = {
     vim.api.nvim_set_keymap("n", "<leader>e", ":Neotree toggle<CR>", { noremap = true, silent = true }),
     vim.keymap.set("v", "<leader>R", [[:<C-u>%s/\%V<C-r>=escape(@",'/')<CR>/\=input("Replace with: ")/g<CR>]]),
 }
-
+vim.api.nvim_create_autocmd("CursorHold", {
+    callback = function()
+        vim.lsp.buf.signature_help()
+    end,
+})
 return M

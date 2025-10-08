@@ -78,7 +78,6 @@ if [ -x /usr/bin/dircolors ]; then
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
@@ -87,10 +86,6 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-
-alias l='ls -CF'
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -98,13 +93,22 @@ alias ....='cd ../../..'
 
 alias gt='git status'
 alias gc='git commit -m'
-alias ga='git add .'
+alias ga='git add'
 alias gp='git push'
 alias gl='git log --oneline'
 alias cl='clear'
 alias python='source ./venv/bin/activate'
+alias py3='python3'
 alias bashrc='source ~/.bashrc'
 alias WDOWN='cd /mnt/c/Users/Admin/Downloads/'
+
+alias grep='rg --color=auto'
+alias cat='batcat'
+alias ls='lsd'
+alias l='ls'
+alias ll='ls -alF'
+alias la='ls -A'
+
 moveW() {
     mv "$1" /mnt/c/Users/Admin
 }
