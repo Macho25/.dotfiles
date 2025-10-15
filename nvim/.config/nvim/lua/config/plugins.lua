@@ -1,5 +1,3 @@
-local keymaps = require("config.keymaps")
-
 return {
     {
         "christoomey/vim-tmux-navigator",
