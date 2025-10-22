@@ -15,7 +15,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || true
 # rm -rf ~/.config/nvim/.git
 
 # Neovim
-sudo wget -O /usr/local/bin/nvim "https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.appimage"
+sudo wget -O /usr/local/bin/nvim "https://github.com/neovim/neovim/releases/download/v0.11.4/nvim-linux-x86_64.appimage"
 sudo chmod +x /usr/local/bin/nvim
 
 # Fonts

@@ -4,3 +4,5 @@ require("config.lazy")
 require("config.keymaps")
 
 require("config.plugins")
+
+-- vim.lsp.enable("pyright")
