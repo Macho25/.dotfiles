@@ -109,7 +109,6 @@ alias l='ls'
 alias ll='ls -alF'
 alias la='ls -A'
 
-alias nvimconf='nvim ~/.config/nvim'
 moveW() {
   mv "$1" /mnt/c/Users/Admin
 }
@@ -161,5 +160,9 @@ export PATH="$PATH:$HOME/.local/bin"
 eval "$(oh-my-posh init bash --config ~/.poshthemes/blue-owl.omp.json)"
 export TMUX_PLUGIN_MANAGER_PATH="$HOME/.tmux/plugins/"
 
-alias cmd="/mnt/c/Windows/System32/cmd.exe /C"
-alias glazewm='cmd "C:\Program Files\glzr.io\GlazeWM\glazewm.exe"'
+alias cmd="/mnt/c/Windows/System32/cmd.exe"
+alias glazewm='cmd /C "\"C:\Program Files\glzr.io\GlazeWM\glazewm.exe\" --config=\"C:\Users\Admin\glazeconfig.yaml\""'
+alias glaze="/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -Command \"& 'C:\Program Files\glzr.io\GlazeWM\glazewm.exe' --config 'C:\Users\Admin\glazeconfig.yaml'\""
+alias vim='nvim'
+alias vimconf='vim ~/.config/nvim'
+alias vimbash='vim ~/.bashrc'
