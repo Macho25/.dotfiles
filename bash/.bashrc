@@ -123,14 +123,28 @@ mkcd() {
 }
 
 c() {
-
-  if [ ! -f "./$1.c" ]; then
-    echo "non-existing file"
+  if [ -z "$1" ]; then
+    echo "Usage: c <filename without .c> [output path]"
     return 1
   fi
-  gcc "$1.c" -o "$1"
-}
 
+  if [ ! -f "./$1.c" ]; then
+    echo "Error: '$1.c' does not exist."
+    return 1
+  fi
+
+  if [ -n "$2" ]; then
+    gcc "$1.c" -o "$2"
+  else
+    gcc "$1.c" -o "$1"
+  fi
+
+  if [ $? -eq 0 ]; then
+    echo "Compiled successfully."
+  else
+    echo "Compilation failed."
+  fi
+}
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'

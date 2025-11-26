@@ -23,7 +23,7 @@ mkdir -p ~/.local/share/fonts
 wget -O 0xProto.zip "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/0xProto.zip"
 unzip -o 0xProto.zip -d ~/.local/share/fonts/0xProto
 rm 0xProto.zip
-fc-cache -fv
+#fc-cache -fv
 
 # Oh my posh theme
 curl -s https://ohmyposh.dev/install.sh | bash -s
