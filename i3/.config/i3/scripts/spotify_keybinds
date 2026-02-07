@@ -1,0 +1,27 @@
+# --- STATIC BINDING ---
+# Works anytime, regardless of mode
+bindsym $mod+p exec spotify_control.sh play-pause
+
+# --- VIM-STYLE SPOTIFY MODE ---
+set $mode_spotify   Spotify: [h]Prev [l]Next [k]Vol+ [j]Vol- [r]Loop [s]Stop [Space]Play/Pause
+bindsym $mod+m mode "$mode_spotify"
+
+mode "$mode_spotify" {
+    # Navigation (Vim keys)
+    bindsym l exec spotify_control.sh next
+    bindsym h exec spotify_control.sh prev
+    
+    # Volume (Vim keys)
+    bindsym k exec spotify_control.sh inc
+    bindsym j exec spotify_control.sh dec
+    
+    # Features
+    bindsym r exec spotify_control.sh loop
+    bindsym s exec spotify_control.sh stop
+    bindsym Space exec spotify_control.sh play-pause
+
+    # Exit Mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+m mode "default"
+}

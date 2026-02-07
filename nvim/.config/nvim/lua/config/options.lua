@@ -13,6 +13,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.termguicolors = true
 
+vim.opt.clipboard = "unnamedplus"
 vim.diagnostic.config({
     virtual_text = false,
     signs = true,

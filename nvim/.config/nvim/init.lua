@@ -24,3 +24,5 @@ require("lspconfig").jsonls.setup({
         },
     },
 })
+vim.opt.termguicolors = true
+vim.cmd("colorscheme tokyonight-night")

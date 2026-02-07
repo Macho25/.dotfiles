@@ -41,3 +41,8 @@ keymap("n", "<Leader>ud", "<cmd>LazyVim<cmd>ToggleDiagnostics<CR>", { desc = "To
 
 -- 🔎 Search Current File
 keymap("n", "<Leader>sf", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Fuzzy Find in Current Buffer" })
+-- Yank to system clipboard
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
+
+-- Paste from system clipboard
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
