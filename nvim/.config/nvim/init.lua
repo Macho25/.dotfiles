@@ -26,3 +26,25 @@ require("lspconfig").jsonls.setup({
 })
 vim.opt.termguicolors = true
 vim.cmd("colorscheme tokyonight-night")
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = {
+        "*/i3/config",
+        "*/.config/i3/config",
+        "*/.dotfiles/i3/.config/i3/config",
+    },
+    callback = function()
+        vim.bo.filetype = "i3config"
+    end,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = {
+        ".bash_*",
+        "*.bash_*",
+        "*/.bash_*",
+    },
+    callback = function()
+        vim.bo.filetype = "sh"
+    end,
+})

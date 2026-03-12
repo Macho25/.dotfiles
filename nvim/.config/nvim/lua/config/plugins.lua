@@ -1,6 +1,9 @@
 return {
     "hrsh7th/nvim-cmp",
     "saadparwaiz1/cmp_luasnip",
+    "gsuuon/note.nvim",
+    "Saghen/blink.cmp",
+    "kdheepak/lazygit.nvim",
     {
         "christoomey/vim-tmux-navigator",
         lazy = false,
