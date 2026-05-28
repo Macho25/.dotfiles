@@ -35,3 +35,21 @@ c() {
     echo "Compilation failed."
   fi
 }
+
+monkey() {
+  echo "running monkeytype"
+  monkeytype run "$1" || return
+  # change / for .
+  local x=${1//\//.}
+  # get length
+  local len=${#x}
+
+  local module=$(cut -c 1-$((len - 3)) <<<"$x")
+
+  monkeytype stub "$module" || return
+  echo "created stub file"
+
+  monkeytype apply "$module"
+  echo "finished"
+
+}

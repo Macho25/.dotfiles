@@ -1,0 +1,83 @@
+# vim: set filetype=bash :
+#
+# ~/.mc-_server_aliases_functions
+#
+# removed TAILSCALE_IP
+mcrcon(){
+  rcon -a 0.0.0.0:25575 -p ${SECRET} "$@"
+}
+
+# MC server commands
+alias mc='tmux attach -t craftoria'
+# alias mcstats='docker stats craftoria'
+alias mcram='docker stats --no-stream craftoria'
+# alias mcstart='docker start craftoria'
+# alias mcstop='docker stop craftoria'
+alias mccmd='docker exec craftoria'
+
+#  logs 
+alias mclog='docker logs -f craftoria'
+alias mcwarn='docker logs -f craftoria 2>&1 | grep "WARN|ERROR|overloaded|leak|crash"'
+alias mcerr='docker logs -f craftoria 2>&1 | grep "ERROR|crash|Exception"'
+alias mctail='tail -f /data/mc-server/craftoria/logs/latest.log'
+
+#  stats 
+# alias mcstats='docker stats --no-stream craftoria'
+alias mcram='ps -o pid,rss,%mem,cmd -p $(pgrep -f unix_args) | awk "{print \$2/1024\" MB\"}"'
+alias mcsize='du -sh /data/mc-server/craftoria/world/*/ 2>/dev/null | sort -h'
+alias mcsizesum='du -d 2 -sh /data/mc-server/craftoria/world/*/ 2>/dev/null | sort -h'
+alias mcdisk='df -h /data'
+alias mcstats='docker stats --no-stream craftoria && sensors | grep Core'
+
+#  control 
+alias mcstart='docker start craftoria'
+alias mcstop='mcrcon stop'
+alias mcbackup='bash /data/mc-server/backup.sh'
+
+mcrestart() {
+  mcrcon stop
+  echo "Waiting for server to stop..."
+  sleep 15
+  docker start craftoria
+}
+
+#  quick commands 
+alias mctps='mcrcon "neoforge tps"'
+alias mclist='mcrcon list'
+alias mcsave='mcrcon save-all'
+
+mcsay() {
+  mcrcon "say $*"
+}
+
+mcop() {
+  mcrcon "op $1"
+}
+
+mckick() {
+  mcrcon "kick $1 ${2:-Kicked by admin}"
+}
+
+mctp() {
+  mcrcon "tp $1 $2"
+}
+
+mcgive() {
+  mcrcon "give $1 $2 ${3:-1}"
+}
+
+mcgamemode() {
+  mcrcon "gamemode $1 ${2:-@a}"
+}
+
+mctime() {
+  mcrcon "time set $1"
+}
+
+mcweather() {
+  mcrcon "weather $1"
+}
+
+mcgamerule() {
+  mcrcon "gamerule $1 $2"
+}

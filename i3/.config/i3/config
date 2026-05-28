@@ -9,7 +9,9 @@ include $HOME/.config/i3/keybindings.conf
 include $HOME/.config/i3/window.conf
 include $HOME/.config/i3/colors.conf
 include $HOME/.config/i3/spotify.conf
-include $HOME/.config/i3/custom_keybinds.conf
+# include $HOME/.config/i3/custom_keybinds.conf
+
+exec --no-startup-id xrandr --output $m1 --mode 1920x1080
 
 exec --no-startup-id xrandr --output $m1 --mode 1920x1080
 
@@ -23,4 +25,12 @@ exec --no-startup-id sleep 0.5 && i3-msg restart
 exec --no-startup-id sleep 2 && ~/.config/i3/startup_firefox.sh
 
 exec --no-startup-id sleep 1 && wallpaper 
+
+exec --no-startup-id sleep 0.5 && i3-msg restart
+exec --no-startup-id sleep 0.5 && i3-msg restart 
+
+exec --no-startup-id i3-msg 'workspace $ws2; exec ~/.config/i3/scripts/startup_firefox.sh'
+
+exec --no-startup-id wallpaper
+
 

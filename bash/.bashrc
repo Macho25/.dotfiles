@@ -2,6 +2,9 @@
 # ~/.bashrc
 #
 #
+# export TAILSCALE_IP=$(tailscale ip -4)
+export SECRET="ServeR317250+"
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -10,6 +13,9 @@ if [ -f ~/.bash_aliases ]; then
 fi
 if [ -f ~/.bash_functions ]; then
   . ~/.bash_functions
+fi
+if [ -f ~/.mc_server_aliases_functions ]; then
+  . ~/.mc_server_aliases_functions
 fi
 
 eval "$(oh-my-posh init bash --config ~/.poshthemes/catppuccin_mocha.omp.json)"
@@ -22,3 +28,4 @@ export PATH="$HOME/.local/bin:$PATH"
 
 PS1='[\u@\h \W]\$ '
 CURRENT_WALLPAPER="$HOME/Pictures/blue.jpg"
+CURRENT_WALLPAPER="$HOME/Pictures/cat.png"

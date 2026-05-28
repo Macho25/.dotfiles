@@ -42,7 +42,40 @@ keymap("n", "<Leader>ud", "<cmd>LazyVim<cmd>ToggleDiagnostics<CR>", { desc = "To
 -- 🔎 Search Current File
 keymap("n", "<Leader>sf", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Fuzzy Find in Current Buffer" })
 -- Yank to system clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
+keymap({ "n", "v" }, "<leader>y", '"+y')
 
 -- Paste from system clipboard
-vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
+keymap({ "n", "v" }, "<leader>p", '"+p')
+
+local dap = require("dap")
+keymap("n", "<F5>", dap.continue, { desc = "Debug: Start/Continue" })
+keymap("n", "<F10>", dap.step_over, { desc = "Debug: Step Over" })
+keymap("n", "<F11>", dap.step_into, { desc = "Debug: Step Into" })
+keymap("n", "<F12>", dap.step_out, { desc = "Debug: Step Out" })
+keymap("n", "<leader>db", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
+keymap("n", "<leader>dB", function()
+    dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+end, { desc = "Debug: Conditional Breakpoint" })
+
+-- C# Specific
+keymap("n", "<leader>mb", "<cmd>TermExec cmd='./build.sh'<cr>", { desc = "Build Mod" })
+keymap("n", "<leader>mt", "<cmd>TermExec cmd='dotnet test'<cr>", { desc = "Run Tests" })
+
+-- LSP (LazyVim defaults, but here for reference)
+keymap("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
+keymap("n", "gr", vim.lsp.buf.references, { desc = "Find References" })
+keymap("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
+keymap("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename Symbol" })
+keymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
+
+-- Debugging
+keymap("n", "<F5>", require("dap").continue, { desc = "Debug: Start/Continue" })
+keymap("n", "<F10>", require("dap").step_over, { desc = "Step Over" })
+keymap("n", "<F11>", require("dap").step_into, { desc = "Step Into" })
+keymap("n", "<leader>db", require("dap").toggle_breakpoint, { desc = "Toggle Breakpoint" })
+keymap("n", "<leader>dr", require("dap").repl.open, { desc = "Open Debug REPL" })
+
+-- View game logs
+keymap("n", "<leader>ml", function()
+    vim.cmd("edit " .. vim.fn.expand("~/.steam/steam/steamapps/common/Colony\\ Survival/gamedata/logs/game.log"))
+end, { desc = "Open Game Log" })
