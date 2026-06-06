@@ -15,8 +15,8 @@ vim.opt.termguicolors = true
 
 vim.opt.clipboard = "unnamedplus"
 vim.diagnostic.config({
-    virtual_text = false,
-    signs = true,
-    underline = true,
-    float = { border = "rounded" },
+  virtual_text = false,
+  signs = true,
+  underline = true,
+  float = { border = "rounded" },
 })

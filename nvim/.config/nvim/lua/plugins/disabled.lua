@@ -1,5 +1,3 @@
 return {
-    { "bufferline.nvim", enabled = false },
-    { "gsuuon/note.nvim", enabled = true },
-    { "Saghen/blink.cmp", enabled = true },
+  { "akinsho/bufferline.nvim", enabled = false },
 }

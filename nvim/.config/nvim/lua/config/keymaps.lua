@@ -8,7 +8,7 @@ local keymap = vim.keymap.set
 keymap("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit window" })
 keymap("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
 keymap("n", "<leader>wq", "<cmd>wq<CR>", { desc = "Save and quit file" })
-keymap("n", "<leader>Q", "<cmd>q!<CR>", { desc = "Quir file without saving" })
+keymap("n", "<leader>Q", "<cmd>q!<CR>", { desc = "Quit file without saving" })
 
 -- LSP signature specific keymap
 keymap({ "n", "i" }, "<C-s>", function()

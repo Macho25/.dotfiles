@@ -1,10 +1,8 @@
 return {
     "neovim/nvim-lspconfig",
-    -- ... other configuration ...
     opts = {
         servers = {
             pyright = {
-                -- Pass your Pyright config here under the 'settings' key
                 settings = {
                     python = {
                         analysis = {
@@ -12,6 +10,13 @@ return {
                             diagnosticMode = "workspace",
                             typeCheckingMode = "strict",
                             useLibraryCodeForTypes = true,
+                            --           reportUnusedImport = "information",
+                            --           reportUnusedVariable = "none",
+                            reportMissingTypeStubs = "information",
+                            --           reportUnknownMemberType = "none",
+                            --           reportUnknownVariableType = "none",
+                            --           reportUnknownArgumentType = "none",
+                            --           reportGeneralTypeIssues = "none",
                         },
                     },
                 },

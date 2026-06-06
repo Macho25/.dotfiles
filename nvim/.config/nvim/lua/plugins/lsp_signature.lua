@@ -1,32 +1,32 @@
 return {
     "ray-x/lsp_signature.nvim",
-    -- This ensures the plugin loads when you enter insert mode, enabling auto-popups.
-    event = "InsertEnter",
-    opts = {
-        -- Required to use the handler_opts border settings
-        bind = true,
-        handler_opts = {
-            border = "rounded",
-            close_events = {
-                "BufLeave",
-                "CursorMoved",
-                "InsertEnter",
-                "InsertLeave",
-            },
-        },
-        -- Auto pop-up when typing function calls:
-        floating_window = true,
-        -- Other automatic pop-up configuration is the default, which is good.
-    },
-    -- The 'config' function runs after the plugin is installed and loaded.
-    keys = {
-        {
-            "<Leader>si", -- <Space>si for "Signature Info" - a completely unused combination
-            function()
-                require("lsp_signature").toggle_float_win()
-            end,
-            mode = "n",
-            desc = "Toggle LSP Signature",
-        },
-    },
+    --   -- setup() causes double popups by wrapping LazyVim's handler.
+    --   -- Instead, keep the module installed only for the <C-s> toggle in keymaps.lua,
+    --   -- and auto-trigger the native LSP signature help when typing '('.
+    --   -- The handler opens the popup without stealing cursor focus.
+    --   init = function()
+    --     -- Override LazyVim's handler after everything's loaded.
+    --     -- Sets focus=false so typing doesn't jump into the popup.
+    --     vim.api.nvim_create_autocmd("User", {
+    --       pattern = "VeryLazy",
+    --       once = true,
+    --       callback = function()
+    --         vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+    --           vim.lsp.handlers.signatureHelp,
+    --           { border = "rounded", focusable = false, focus = false }
+    --         )
+    --       end,
+    --     })
+    --
+    --     -- Auto-trigger signature help when typing '(' in insert mode
+    --     vim.api.nvim_create_autocmd("InsertCharPre", {
+    --       group = vim.api.nvim_create_augroup("sig_auto", { clear = true }),
+    --       callback = function()
+    --         local col = vim.fn.col(".")
+    --         if col > 1 and vim.fn.getline("."):sub(col - 1, col - 1) == "(" then
+    --           vim.lsp.buf.signature_help()
+    --         end
+    --       end,
+    --     })
+    --   end,
 }

@@ -1,50 +1,30 @@
--- bootstrap lazy.nvim, lazyvim and your plugins
+-- Bootstrap lazy.nvim, LazyVim, and your plugins
 require("config.lazy")
 
+-- Load keymaps and options
 require("config.keymaps")
-
-require("config.plugins")
-
-require("config.lazy")
-
 require("config.options")
--- require("image").setup({
--- backend = "sixel",
--- processor = "magick_cli",
--- integrations = {
---     markdown = { enabled = true },
--- },
--- })
--- vim.lsp.enable("pyright")
-require("lspconfig").jsonls.setup({
-    settings = {
-        json = {
-            schemas = require("schemastore").json.schemas(),
-            validate = { enable = true },
-        },
-    },
-})
-vim.opt.termguicolors = true
-vim.cmd("colorscheme tokyonight-night")
 
+-- Set filetype for i3 config files
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = {
-        "*/i3/config",
-        "*/.config/i3/config",
-        "*/.dotfiles/i3/.config/i3/config",
-    },
-    callback = function()
-        vim.bo.filetype = "i3config"
-    end,
+  pattern = {
+    "*/i3/config",
+    "*/.config/i3/config",
+    "*/.dotfiles/i3/.config/i3/config",
+  },
+  callback = function(args)
+    vim.bo[args.buf].filetype = "i3config"
+  end,
 })
 
+-- Set filetype for .bash_* files
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = {
-        ".bash_*",
-        "*.bash_*",
-        "*/.bash_*",
-    },
-    callback = function()
-        vim.bo.filetype = "sh"
-    end,
+  pattern = {
+    ".bash_*",
+    "*.bash_*",
+    "*/.bash_*",
+  },
+  callback = function(args)
+    vim.bo[args.buf].filetype = "sh"
+  end,
 })
