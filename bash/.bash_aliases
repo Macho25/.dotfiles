@@ -52,6 +52,9 @@ alias gbD='git branch --delete --force' # Hard delete branch
 alias gco='git checkout'                # Clean checkout shortcut (no 'gc' conflict)
 alias gcb='git checkout -b'             # Create and switch to branch instantly
 
+alias gr='git remote'
+alias grv='git remote -v'
+
 # --- Logging & Inspection ---
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias glo='git log --oneline --decorate'          # Compact line view
@@ -88,12 +91,14 @@ alias gstd='git stash drop'  # Permanently discard latest stash
 
 # --- Advanced OMZ Inventions (WIP & Automation) ---
 
-# 🚧 Work In Progress (WIP) System: Save dirty code state without making real commits
+#  Work In Progress (WIP) System: Save dirty code state without making real commits
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign --message "--wip-- [skip ci]"'
 alias gunwip='git rev-list --max-count=1 --format="%s" HEAD | grep -q "--wip--" && git reset HEAD~1'
 
-# 🧹 Clean Up Dead Local Branches: Delete any local branches that were already deleted on remote origin
+#  Clean Up Dead Local Branches: Delete any local branches that were already deleted on remote origin
 alias gbda='git fetch -p && git branch -vv | grep ": gone\]" | awk '"'"'{print $1}'"'"' | xargs -r git branch -d'
+
+alias grs='git restore --staged'
 
 # general
 alias cl='clear'
@@ -113,3 +118,9 @@ alias pa='source ./venv/bin/activate'
 alias setw='feh --bg-scale'
 
 alias aliases='nvim ~/.bash_aliases'
+
+alias .r='dotnet run'
+alias .b='dotnet build'
+alias .br='.r && .b'
+
+alias pav='pavucontrol'
