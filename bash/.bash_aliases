@@ -121,6 +121,6 @@ alias aliases='nvim ~/.bash_aliases'
 
 alias .r='dotnet run'
 alias .b='dotnet build'
-alias .br='.r && .b'
+alias .br='dotnet build && dotnet run'
 
 alias pav='pavucontrol'
