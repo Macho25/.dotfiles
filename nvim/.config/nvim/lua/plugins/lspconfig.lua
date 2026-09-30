@@ -2,6 +2,8 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
         servers = {
+            omnisharp = { enabled = false },
+            csharp_ls = { enabled = false },
             pyright = {
                 settings = {
                     python = {
@@ -21,6 +23,9 @@ return {
                     },
                 },
             },
+        },
+        codelens = {
+            enabled = false,
         },
     },
 }
