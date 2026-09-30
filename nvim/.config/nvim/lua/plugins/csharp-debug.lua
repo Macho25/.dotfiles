@@ -1,19 +1,10 @@
+-- dap, dap-ui and virtual text come from the dap.core extra (<leader>d...)
 return {
     {
         "mfussenegger/nvim-dap",
-        dependencies = {
-            -- Add nvim-nio as a dependency
-            "nvim-neotest/nvim-nio",
-
-            -- DAP UI components
-            "rcarriga/nvim-dap-ui",
-            "theHamsta/nvim-dap-virtual-text",
-        },
-        config = function()
+        opts = function()
             local dap = require("dap")
-            local dapui = require("dapui")
 
-            -- Configure .NET debugger
             dap.adapters.coreclr = {
                 type = "executable",
                 command = vim.fn.stdpath("data") .. "/mason/bin/netcoredbg",
@@ -37,26 +28,11 @@ return {
                     type = "coreclr",
                     name = "Attach to Colony Survival",
                     request = "attach",
-                    processId = require("dap.utils").pick_process,
+                    processId = function()
+                        return require("dap.utils").pick_process()
+                    end,
                 },
             }
-
-            -- Setup DAP UI
-            dapui.setup()
-
-            -- Setup virtual text (shows variable values inline)
-            require("nvim-dap-virtual-text").setup()
-
-            -- Auto-open/close DAP UI when debugging starts/ends
-            dap.listeners.after.event_initialized["dapui_config"] = function()
-                dapui.open()
-            end
-            dap.listeners.before.event_terminated["dapui_config"] = function()
-                dapui.close()
-            end
-            dap.listeners.before.event_exited["dapui_config"] = function()
-                dapui.close()
-            end
         end,
         keys = {
             {
@@ -86,41 +62,6 @@ return {
                     require("dap").step_out()
                 end,
                 desc = "Debug: Step Out",
-            },
-            {
-                "<leader>db",
-                function()
-                    require("dap").toggle_breakpoint()
-                end,
-                desc = "Debug: Toggle Breakpoint",
-            },
-            {
-                "<leader>dB",
-                function()
-                    require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-                end,
-                desc = "Debug: Conditional Breakpoint",
-            },
-            {
-                "<leader>dr",
-                function()
-                    require("dap").repl.open()
-                end,
-                desc = "Debug: Open REPL",
-            },
-            {
-                "<leader>dl",
-                function()
-                    require("dap").run_last()
-                end,
-                desc = "Debug: Run Last",
-            },
-            {
-                "<leader>du",
-                function()
-                    require("dapui").toggle()
-                end,
-                desc = "Debug: Toggle UI",
             },
         },
     },

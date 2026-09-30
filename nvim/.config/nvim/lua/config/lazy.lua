@@ -21,15 +21,6 @@ require("lazy").setup({
 
         -- your own plugin imports
         { import = "plugins" },
-
-        -- additional plugins MUST go here
-        {
-            "samodostal/image.nvim",
-            dependencies = { "nvim-lua/plenary.nvim" },
-        },
-        {
-            "b0o/schemastore.nvim",
-        },
     },
 
     defaults = {

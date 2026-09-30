@@ -1,42 +1,23 @@
+-- Base setup comes from the editor.harpoon2 extra (<leader>H add, <leader>h menu, <leader>1-9)
 return {
-  {
     "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      local harpoon = require("harpoon")
-
-      harpoon:setup()
-
-      -- Keymaps
-      vim.keymap.set("n", "<leader>a", function()
-        harpoon:list():add()
-      end, { desc = "Harpoon Add File" })
-
-      vim.keymap.set("n", "<leader>h", function()
-        harpoon.ui:toggle_quick_menu(harpoon:list())
-      end, { desc = "Harpoon Menu" })
-
-      -- Harpoon navigation with Alt key
-      vim.keymap.set("n", "<A-1>", function()
-        harpoon:list():select(1)
-      end, { desc = "Harpoon File 1" })
-
-      vim.keymap.set("n", "<A-2>", function()
-        harpoon:list():select(2)
-      end, { desc = "Harpoon File 2" })
-
-      vim.keymap.set("n", "<A-3>", function()
-        harpoon:list():select(3)
-      end, { desc = "Harpoon File 3" })
-
-      vim.keymap.set("n", "<A-4>", function()
-        harpoon:list():select(4)
-      end, { desc = "Harpoon File 4" })
-
-      vim.keymap.set("n", "<A-5>", function()
-        harpoon:list():select(5)
-      end, { desc = "Harpoon File 5" })
+    keys = function(_, keys)
+        table.insert(keys, {
+            "<leader>a",
+            function()
+                require("harpoon"):list():add()
+            end,
+            desc = "Harpoon Add File",
+        })
+        for i = 1, 5 do
+            table.insert(keys, {
+                "<A-" .. i .. ">",
+                function()
+                    require("harpoon"):list():select(i)
+                end,
+                desc = "Harpoon File " .. i,
+            })
+        end
+        return keys
     end,
-  },
 }

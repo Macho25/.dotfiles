@@ -3,10 +3,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
         opts = function(_, opts)
             vim.list_extend(opts.ensure_installed, {
-                "c_sharp",
-                "xml", -- For .csproj files
-                "c",
-                "python",
+                "xml", -- For .csproj files (c_sharp, c, python come from the lang extras)
             })
         end,
     },
