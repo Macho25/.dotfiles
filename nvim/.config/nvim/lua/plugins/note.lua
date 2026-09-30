@@ -18,15 +18,14 @@ return {
     cmd = "Note",
     ft = "note",
     keys = {
-        -- You can use telescope to search the current note space:
+        -- Grep the current note space
         {
-            "<leader>tn", -- [t]elescope [n]ote
+            "<leader>tn",
             function()
-                require("telescope.builtin").live_grep({
-                    cwd = require("note.api").current_note_root(),
-                })
+                Snacks.picker.grep({ cwd = require("note.api").current_note_root() })
             end,
             mode = "n",
+            desc = "Grep Notes",
         },
     },
 }
