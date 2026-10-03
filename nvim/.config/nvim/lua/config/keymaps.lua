@@ -3,8 +3,21 @@
 -- Add any additional keymaps here
 local keymap = vim.keymap.set
 
--- General keymaps (save: <C-s>, quit all: <leader>qq)
+-- General keymaps
+keymap("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit window" })
+keymap("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
+keymap("n", "<leader>wq", "<cmd>wq<CR>", { desc = "Save and quit file" })
 keymap("n", "<leader>Q", "<cmd>q!<CR>", { desc = "Quit file without saving" })
+
+-- System clipboard
+keymap({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to clipboard" })
+keymap({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from clipboard" })
+
+-- Debugging (require inside the function so nvim-dap isn't loaded at startup)
+keymap("n", "<F5>", function() require("dap").continue() end, { desc = "Debug: Start/Continue" })
+keymap("n", "<F10>", function() require("dap").step_over() end, { desc = "Debug: Step Over" })
+keymap("n", "<F11>", function() require("dap").step_into() end, { desc = "Debug: Step Into" })
+keymap("n", "<F12>", function() require("dap").step_out() end, { desc = "Debug: Step Out" })
 
 keymap("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 keymap("t", "jk", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
