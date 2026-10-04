@@ -1,7 +1,11 @@
--- Base setup comes from the editor.harpoon2 extra (<leader>H add, <leader>h menu, <leader>1-9)
+-- Base setup comes from the editor.harpoon2 extra; only its <leader>h menu is kept.
+-- Its <leader>H and <leader>1-9 are dropped in favour of <leader>a and <A-1>..<A-5>.
 return {
     "ThePrimeagen/harpoon",
     keys = function(_, keys)
+        keys = vim.tbl_filter(function(k)
+            return k[1] ~= "<leader>H" and not k[1]:match("^<leader>%d$")
+        end, keys)
         table.insert(keys, {
             "<leader>a",
             function()
