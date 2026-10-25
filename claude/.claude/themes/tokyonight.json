@@ -1,0 +1,25 @@
+{
+  "name": "Tokyo Night",
+  "base": "dark",
+  "overrides": {
+    "claude": "#7aa2f7",
+    "claudeShimmer": "#a4daff",
+    "text": "#c0caf5",
+    "inactive": "#565f89",
+    "subtle": "#414868",
+    "suggestion": "#7dcfff",
+    "permission": "#bb9af7",
+    "promptBorder": "#3b4261",
+    "planMode": "#7dcfff",
+    "autoAccept": "#bb9af7",
+    "bashBorder": "#ff9e64",
+    "success": "#9ece6a",
+    "error": "#f7768e",
+    "warning": "#e0af68",
+    "diffAdded": "#20303b",
+    "diffRemoved": "#37222c",
+    "diffAddedWord": "#2c5a46",
+    "diffRemovedWord": "#713137",
+    "userMessageBackground": "#1f2335"
+  }
+}

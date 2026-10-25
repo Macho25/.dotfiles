@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "enabledPlugins": {
+    "vibe-wise@vibe-wise": true
+  },
+  "extraKnownMarketplaces": {
+    "vibe-wise": {
+      "source": {
+        "source": "github",
+        "repo": "nykooi1/vibe-wise"
+      }
+    }
+  },
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "theme": "auto",
+  "editorMode": "vim",
+  "vimInsertModeRemaps": { "jk": "<Esc>" },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "refreshInterval": 60
+  }
+}
