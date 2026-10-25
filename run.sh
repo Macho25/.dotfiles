@@ -56,6 +56,6 @@ mv ~/.cache/oh-my-posh/themes/blue-owl.omp.json ~/.poshthemes/
 
 # rm -rf ~/.config/tmux ~/.config/nvim
 mv ~/.bashrc ~/.bashrc.backup
-stow -v tmux nvim bash
+stow -v tmux nvim bash claude
 tmux -f ~/.config/tmux/tmux.conf new-session -d || true
 source ~/.bashrc
